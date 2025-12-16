@@ -11,7 +11,7 @@ class TestTask(unittest.TestCase):
         
         task = Task(1, 10)
 
-        Ax = Task.work(task)
+        Task.work(task)
 
         # Vérification numérique avec tolérance
         assert_allclose(task.a @task.x, task.b, rtol=1e-7, atol=1e-9)
