@@ -23,9 +23,13 @@ jobs:
         with:
           python-version-file: "pyproject.toml"
 
+      - name: "Precommit"
+        run: uv run pre-commit run -a
+      
+      
       - name: Install the project
         run: uv sync --locked --all-extras --dev
 
       - name: Run tests
         # For example, using `pytest`
-        run: uv run pytest tests
+        run: uv run python -m unittest
