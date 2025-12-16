@@ -15,7 +15,7 @@ class TestTask(unittest.TestCase):
     def test_a_equals_b(self):
         a = Task()
         json_dump = a.to_json()
-        b = Task.from_json(json_dump)
+        Task.from_json(json_dump)
 
 
 if __name__ == "__main__":
