@@ -1,5 +1,9 @@
 name: Multithreading
 
+on:
+  push:
+  pull_request:
+
 jobs:
   uv-test:
     name: python
