@@ -25,8 +25,8 @@ jobs:
 
       - name: "Precommit"
         run: uv run pre-commit run -a
-      
-      
+
+
       - name: Install the project
         run: uv sync --locked --all-extras --dev
 
