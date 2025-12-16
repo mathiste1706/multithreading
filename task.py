@@ -47,3 +47,23 @@ class Task:
         task.x = np.array(data["x"])
 
         return task
+
+    def __eq__(self, other: "Task") -> bool:
+        # Si la taille est differente, cela se repercute sur les matrices
+
+        if self.identifier != other.identifier:
+            return False
+
+        if self.a != other.a:
+            return False
+
+        if self.b != other.b:
+            return False
+
+        if self.x != other.x:
+            return False
+
+        if self.x != other.x:
+            return False
+
+        return True

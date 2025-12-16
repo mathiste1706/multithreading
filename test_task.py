@@ -12,6 +12,11 @@ class TestTask(unittest.TestCase):
         # Vérification numérique avec tolérance
         assert_allclose(task.a @ task.x, task.b, rtol=1e-7, atol=1e-9)
 
+    def test_a_equals_b(self):
+        a = Task()
+        json_dump = a.to_json()
+        b = Task.from_json(json_dump)
+
 
 if __name__ == "__main__":
     unittest.main()
