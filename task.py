@@ -49,7 +49,6 @@ class Task:
         return task
 
     def __eq__(self, other: "Task") -> bool:
-
         if self.identifier != other.identifier:
             return False
         if self.size != other.size:
@@ -67,7 +66,6 @@ class Task:
         if self.x != other.x:
             return False
 
-        
         if self.time != other.time:
             return False
 

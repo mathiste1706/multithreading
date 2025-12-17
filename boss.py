@@ -1,13 +1,15 @@
 from multiprocessing.managers import BaseManager
 from task import Task
 
+
 class QueueManager(BaseManager):
     pass
 
-QueueManager.register('task_queue')
-QueueManager.register('result_queue')
 
-manager = QueueManager(address=('localhost', 50000), authkey=b'abc')
+QueueManager.register("task_queue")
+QueueManager.register("result_queue")
+
+manager = QueueManager(address=("localhost", 50000), authkey=b"abc")
 manager.connect()
 
 task_queue = manager.task_queue()

@@ -1,6 +1,7 @@
 from manager import QueueClient
 import time
 
+
 def main():
     client = QueueClient()
     print("[MINION] Connected to manager.")
@@ -12,12 +13,13 @@ def main():
 
             task.work()
             print(f"[MINION] Finished task {task.identifier} in {task.time:.3e}s")
-            
+
             client.result_queue.put(task)
 
         except Exception as e:
             print(f"[MINION] Error: {e}")
             time.sleep(1)  # prevent busy loop
+
 
 if __name__ == "__main__":
     main()
