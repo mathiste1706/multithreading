@@ -49,9 +49,10 @@ class Task:
         return task
 
     def __eq__(self, other: "Task") -> bool:
-        # Si la taille est differente, cela se repercute sur les matrices
 
         if self.identifier != other.identifier:
+            return False
+        if self.size != other.size:
             return False
 
         if self.a != other.a:
@@ -64,6 +65,10 @@ class Task:
             return False
 
         if self.x != other.x:
+            return False
+
+        
+        if self.time != other.time:
             return False
 
         return True
