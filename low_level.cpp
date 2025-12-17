@@ -13,6 +13,12 @@
 
 using json = nlohmann::json;
 
+#include <Eigen/Core>
+
+
+
+
+
 // Task
 //////////////////////////////////////////////////////////////////////////////:
 class Task {
@@ -159,28 +165,30 @@ void http_post(const std::string &url, const std::string &json_body) {
 ////////////////////////////////////////////////////
 
 int main() {
-  const std::string url = "http://localhost:8000";
+    const std::string url = "http://localhost:8000";
 
-  while (true) {
-    try {
-      // 1. GET task
-      std::string task_json = http_get(url);
-      Task task = Task::from_json(task_json);
+    Eigen::initParallel();   // Enable Eigen threads
+    Eigen::setNbThreads(4);  // Use 4 cores
 
-      std::cout << "Received task " << task.identifier << " size=" << task.size
-                << std::endl;
+    while (true) {
+        try {
+            std::string task_json = http_get(url);
+            Task task = Task::from_json(task_json);
 
-      // 2. Work
-      task.work();
+            std::cout << "Received task " << task.identifier
+                      << " size=" << task.size << std::endl;
 
-      // 3. POST result
-      http_post(url, task.to_json());
+            // Solve Ax = b using Eigen multithreaded QR
+            task.work();
 
-      std::cout << "Completed task " << task.identifier << " in " << task.time
-                << "s\n";
-    } catch (const std::exception &e) {
-      std::cerr << "Error: " << e.what() << std::endl;
-      std::this_thread::sleep_for(std::chrono::seconds(1));
+            http_post(url, task.to_json());
+
+            std::cout << "Completed task " << task.identifier
+                      << " in " << task.time << "s\n";
+        } catch (const std::exception &e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
     }
-  }
 }
+
