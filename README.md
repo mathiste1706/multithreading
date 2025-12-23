@@ -6,11 +6,11 @@ Python
 [MINION] Working on task 2 (size=6000)  
 [MINION] Finished task 2 in 2.726e+00s  
 
-C++ en mode debug
+C++ en mode debug  
 62.4514s
 
-C++ en mode release
-Received task 0 size=6000
+C++ en mode release  
+Received task 0 size=6000  
 {"status": "ok"}Completed task 0 in 2.87037s
 
 
