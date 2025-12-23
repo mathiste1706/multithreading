@@ -14,10 +14,7 @@
 using json = nlohmann::json;
 
 #include <Eigen/Core>
-
-
-
-
+#include <lapacke.h>
 
 // Task
 //////////////////////////////////////////////////////////////////////////////:
@@ -60,7 +57,10 @@ public:
   // Solve Ax = b and measure time
   void work() {
     auto start = std::chrono::high_resolution_clock::now();
-    x = a.colPivHouseholderQr().solve(b);
+
+    // Faster LU solver instead of Householder QR
+    x = a.partialPivLu().solve(b);
+
     auto end = std::chrono::high_resolution_clock::now();
     time = std::chrono::duration<double>(end - start).count();
   }
@@ -165,30 +165,29 @@ void http_post(const std::string &url, const std::string &json_body) {
 ////////////////////////////////////////////////////
 
 int main() {
-    const std::string url = "http://localhost:8000";
+  const std::string url = "http://localhost:8000";
 
-    Eigen::initParallel();   // Enable Eigen threads
-    Eigen::setNbThreads(4);  // Use 4 cores
+  Eigen::initParallel();  // Enable Eigen threads
+  Eigen::setNbThreads(4); // Use 4 cores
 
-    while (true) {
-        try {
-            std::string task_json = http_get(url);
-            Task task = Task::from_json(task_json);
+  while (true) {
+    try {
+      std::string task_json = http_get(url);
+      Task task = Task::from_json(task_json);
 
-            std::cout << "Received task " << task.identifier
-                      << " size=" << task.size << std::endl;
+      std::cout << "Received task " << task.identifier << " size=" << task.size
+                << std::endl;
 
-            // Solve Ax = b using Eigen multithreaded QR
-            task.work();
+      // Solve Ax = b using Eigen multithreaded QR
+      task.work();
 
-            http_post(url, task.to_json());
+      http_post(url, task.to_json());
 
-            std::cout << "Completed task " << task.identifier
-                      << " in " << task.time << "s\n";
-        } catch (const std::exception &e) {
-            std::cerr << "Error: " << e.what() << std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-        }
+      std::cout << "Completed task " << task.identifier << " in " << task.time
+                << "s\n";
+    } catch (const std::exception &e) {
+      std::cerr << "Error: " << e.what() << std::endl;
+      std::this_thread::sleep_for(std::chrono::seconds(1));
     }
+  }
 }
-
