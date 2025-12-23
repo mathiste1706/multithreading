@@ -11,7 +11,8 @@ C++ en mode debug
 
 C++ en mode release  
 Received task 0 size=6000  
-{"status": "ok"}Completed task 0 in 2.87037s  
+{"status": "ok"}  
+Completed task 0 in 2.87037s  
 
 
 Explication:
