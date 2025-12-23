@@ -20,8 +20,8 @@ En Python, ici on utilise numpy qui est optimisé pour des listes avec beaucoup 
 
 Utilisation:  
 Pour lancer les différents agent, il faut lancer dans l'ordre:  
--- manager.py
--- proxy.py
--- minion.py ou ./build/low_level.cpp
--- ./build/low_level.cpp ou minion.py
--- boss.py
+- manager.py
+- proxy.py
+- minion.py ou ./build/low_level.cpp
+- .build/low_level.cpp ou minion.py
+- boss.py
