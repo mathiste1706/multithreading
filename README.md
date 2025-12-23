@@ -18,8 +18,8 @@ Explication:
 En Python, ici on utilise numpy qui est optimisé pour des listes avec beaucoup d'élements. Ainsi on obtient un temps de résolution équivalent au C++. A noter qu'on ne comptabilise pas le temps que met l'agent C++ à obtenir l'information.
 
 
-Utilisation:
-Pour lancer les différents agent, il faut lancer dans l'ordre:
+Utilisation:  
+Pour lancer les différents agent, il faut lancer dans l'ordre:  
 -- manager.py
 -- proxy.py
 -- minion.py ou ./build/low_level.cpp
