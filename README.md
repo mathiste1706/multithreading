@@ -9,10 +9,10 @@ Python
 C++ en mode debug
 62.4514s
 
-C++ en mode release  
-Received task 0 size=6000  
-{"status": "ok"}  
-Completed task 0 in 2.87037s  
+C++ en mode release
+Received task 0 size=6000
+{"status": "ok"}
+Completed task 0 in 2.87037s
 
 
 Explication:
