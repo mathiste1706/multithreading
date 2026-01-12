@@ -1,27 +1,24 @@
-Pour size=6000
-Python
-[MINION] Connected to manager.
-[MINION] Working on task 0 (size=6000)
-[MINION] Finished task 0 in 2.748e+00s
-[MINION] Working on task 2 (size=6000)
-[MINION] Finished task 2 in 2.726e+00s
+Pour size=6000<br>
+Python<br>
+[MINION] Connected to manager.<br>
+[MINION] Working on task 0 (size=6000)<br>
+[MINION] Finished task 0 in 2.748e+00s<br>
+[MINION] Working on task 2 (size=6000)<br>
+[MINION] Finished task 2 in 2.726e+00s<br>
 
-C++ en mode debug
-62.4514s
+C++ en mode debug<br>
+62.4514s<br>
 
 
 
-C++ en mode release
-
-Received task 0 size=6000
-
-{"status": "ok"}
-
-Completed task 0 in 2.87037s
+C++ en mode release<br>
+Received task 0 size=6000<br>
+{"status": "ok"}<br>
+Completed task 0 in 2.87037s<br>
 
 
 Explication:
-En Python, ici on utilise numpy qui est optimisé pour des listes avec beaucoup d'élements. Ainsi on obtient un temps de résolution équivalent au C++. A noter qu'on ne comptabilise pas le temps que met l'agent C++ à obtenir l'information.
+En Python, ici on utilise numpy qui est optimisé pour des listes avec beaucoup d'élements. Ainsi on obtient un temps de résolution équivalent au C++. A noter qu'on ne comptabilise pas le temps que met l'agent C++ à obtenir l'information. A noter que si size est trop faible, alors numpy n'est pas adapté. Ainsi dans le cas d'un size faible, le C++ est plus rapide.
 
 
 Utilisation:
